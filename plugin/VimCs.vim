@@ -15,7 +15,7 @@ fun! VimCs#search()
 	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
 
 	" Paste output of CS in the pane
-	execute '$read ! rg -n ' s:query
+	execute '$read ! rg -n "' . s:query . '"'
 	execute ':1d'
 	setlocal nomodifiable
 
