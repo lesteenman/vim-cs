@@ -16,6 +16,7 @@ fun! VimCs#search()
 
 	" Paste output of CS in the pane
 	execute '$read ! rg -n ' s:query
+	execute ':1d'
 	setlocal nomodifiable
 
 	nmap <buffer> q :close<CR>
