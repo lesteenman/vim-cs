@@ -1,0 +1,3 @@
+VimCs uses the codesearch plugin (https://github.com/lesteenman/codesearch) to function.
+
+Set up a key binding as follows: nnoremap <leader>f :VimCs<CR>
