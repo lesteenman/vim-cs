@@ -3,18 +3,32 @@ if exists("g:loaded_VimCs") || &cp
 endif
 let g:loaded_VimCs= 1
 
-fun! VimCs#search()
+let g:VimCs#lastQuery=''
+
+fun! VimCs#run()
 	let s:mainwin = winnr()
 
 	let s:query = input("Search: ")
+	echo "\n"
+	call VimCs#search(s:query)
+endfun
 
+fun! VimCs#runLast()
+	if exists('s:query')
+		call VimCs#search(s:query)
+	else
+		echo "No previous query found"
+	endif
+endfun
+
+fun! VimCs#search(...)
 	" Get a buffer or use currently opened buffer
 	" If new buffer: prepare listeners(?)
 
 	" Paste output of CS in the pane
 	let s:output = system('rg -S -n "' . s:query . '"')
 	if v:shell_error
-		echo " - No results found."
+		echo "No results found for '" . s:query . "'"
 		return
 	endif
 
@@ -52,4 +66,5 @@ fun! VimCs#gotoTab()
 	execute ':e +' . s:linenum . ' ' . s:filename
 endfun
 
-command Cs call VimCs#search()
+command Cs call VimCs#run()
+command CsLast call VimCs#runLast()
