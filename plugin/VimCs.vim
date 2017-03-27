@@ -9,7 +9,6 @@ fun! VimCs#run()
 	let s:mainwin = winnr()
 
 	let s:query = input("Search: ")
-	echo "\n"
 	call VimCs#search(s:query)
 endfun
 
@@ -28,6 +27,7 @@ fun! VimCs#search(...)
 	" Paste output of CS in the pane
 	let s:output = system('rg -S -n "' . s:query . '"')
 	if v:shell_error
+		echo "\n"
 		echo "No results found for '" . s:query . "'"
 		return
 	endif
