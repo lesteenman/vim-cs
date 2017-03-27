@@ -11,11 +11,17 @@ fun! VimCs#search()
 	" Get a buffer or use currently opened buffer
 	" If new buffer: prepare listeners(?)
 
+	" Paste output of CS in the pane
+	let s:output = system('rg -S -n "' . s:query . '"')
+	if v:shell_error
+		echo " - No results found."
+		return
+	endif
+
 	botright new
 	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
 
-	" Paste output of CS in the pane
-	execute '$read ! rg -S -n "' . s:query . '"'
+	put =s:output
 	execute ':1d'
 	setlocal nomodifiable
 	execute ':silent file Search\ Results:\ ' . fnameescape(s:query)
