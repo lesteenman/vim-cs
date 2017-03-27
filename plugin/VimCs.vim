@@ -18,7 +18,7 @@ fun! VimCs#search()
 	execute '$read ! rg -S -n "' . s:query . '"'
 	execute ':1d'
 	setlocal nomodifiable
-	execute ':silent file Search\ Results:\ ' . s:query
+	execute ':silent file Search\ Results:\ ' . fnameescape(s:query)
 
 	nmap <buffer> q :close<CR>
 	nmap <buffer> <CR> :call VimCs#goto()<CR>
