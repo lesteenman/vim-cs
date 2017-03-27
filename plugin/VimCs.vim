@@ -20,6 +20,11 @@ fun! VimCs#runLast()
 	endif
 endfun
 
+fun! VimCs#runCursor()
+	let s:query = expand("<cword>")
+	call VimCs#search(s:query)
+endfun
+
 fun! VimCs#search(...)
 	" Get a buffer or use currently opened buffer
 	" If new buffer: prepare listeners(?)
@@ -68,3 +73,4 @@ endfun
 
 command Cs call VimCs#run()
 command CsLast call VimCs#runLast()
+command CsCursor call VimCs#runCursor()
