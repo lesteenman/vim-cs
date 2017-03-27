@@ -1,3 +1,20 @@
-VimCs uses the codesearch plugin (https://github.com/lesteenman/codesearch) to function.
+About VimCs
+===========
 
+
+Requirements
+============
+VimCs uses the RipGrep to function.
+
+Installation
+============
 Set up a key binding as follows: nnoremap <leader>f :VimCs<CR>
+
+Usage
+=====
+Start a search with :VimCs. Enter a search term, and press enter. You will then get a scratch buffer containing the search results.
+
+Press enter while on a line to open the file at the given line in the current window. Press ctrl+t on a line to open it
+in a new tab.
+
+Press q to close the scratch buffer without opening anything.

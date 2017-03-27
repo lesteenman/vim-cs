@@ -15,9 +15,10 @@ fun! VimCs#search()
 	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
 
 	" Paste output of CS in the pane
-	execute '$read ! rg -n "' . s:query . '"'
+	execute '$read ! rg -S -n "' . s:query . '"'
 	execute ':1d'
 	setlocal nomodifiable
+	execute ':silent file Search\ Results:\ ' . s:query
 
 	nmap <buffer> q :close<CR>
 	nmap <buffer> <CR> :call VimCs#goto()<CR>
